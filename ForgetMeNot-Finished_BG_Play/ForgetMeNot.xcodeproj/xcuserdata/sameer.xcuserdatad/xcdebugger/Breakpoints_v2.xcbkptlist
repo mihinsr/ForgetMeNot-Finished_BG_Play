@@ -14,8 +14,8 @@
             filePath = "ForgetMeNot/ViewControllers/ItemsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "addBeacon(item:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -33,22 +33,6 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15BF67F1-80EA-4110-B029-2633D62B3D0F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ForgetMeNot/ViewControllers/ItemsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "locationManager(_:didRangeBeacons:in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

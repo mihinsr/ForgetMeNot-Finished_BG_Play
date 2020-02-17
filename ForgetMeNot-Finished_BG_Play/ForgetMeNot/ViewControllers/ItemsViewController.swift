@@ -29,7 +29,10 @@ let storedItemsKey = "storedItems"
 class ItemsViewController: UIViewController,UNUserNotificationCenterDelegate {
     
     static let shared = ItemsViewController()
-
+    var disconnectB1DateTime: Date?
+    var disconnectB1DateTime1: Date = Date()
+    var second:Int = 0
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,6 +42,7 @@ class ItemsViewController: UIViewController,UNUserNotificationCenterDelegate {
     
     var objPlayer: AVAudioPlayer?
     var isDisconnect:Bool = false
+    var isPlaySound:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -221,6 +225,7 @@ extension ItemsViewController: CLLocationManagerDelegate {
 //        var mess:String = ""
 //        var index:Int = 10000
         // Find the same beacons in the table.
+        
         var indexPaths = [IndexPath]()
         for beacon in beacons {
             for row in 0..<items.count {
@@ -231,17 +236,42 @@ extension ItemsViewController: CLLocationManagerDelegate {
                     {
                         if(beacon.rssi == 0){
                             isDisconnect = true
+                            if (disconnectB1DateTime == nil){
+                                disconnectB1DateTime = Date()
+                            }
                         }else{
                             isDisconnect = false
+                            disconnectB1DateTime = nil
+                        }
+                    }
+                    
+                    if(isDisconnect == true){
+                        if(items[row].name == "B2")
+                        {
+                            if(beacon.rssi != 0){
+                                disconnectB1DateTime = nil
+                            }
                         }
                     }
                 }
             }
         }
         
-        if(isDisconnect){
-            guard let aPlayer = objPlayer else { return }
-            aPlayer.play()
+        if(disconnectB1DateTime != nil){
+            let calendar = Calendar.current
+            let dateComponents = calendar.dateComponents([Calendar.Component.second], from: disconnectB1DateTime!, to: Date())
+            
+            second = dateComponents.second!
+            if(second>=5){
+                isPlaySound = true
+            }else{
+                isPlaySound = false
+            }
+            
+            if(isPlaySound){
+                guard let aPlayer = objPlayer else { return }
+                aPlayer.play()
+            }
         }
         
         // Update beacon locations of visible rows.
@@ -260,6 +290,7 @@ extension ItemsViewController: CLLocationManagerDelegate {
             }
         }
     }
+    
 }
 
 //{

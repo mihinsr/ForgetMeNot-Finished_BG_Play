@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   let locationManager = CLLocationManager()
   var aObjNavi = UINavigationController()
     
+    var isDisconnect:Bool = false
+
     var items = [Item]()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -80,15 +82,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         let newItem2 = Item(name: "B2", icon: Icons.bag.rawValue, uuid: uuid2, majorValue: 0, minorValue: 0)
         items.append(newItem2)
     }
+//    func applicationWillEnterForeground(_ application: UIApplication) {
+//        if(isDisconnect){
+//                ItemsViewController.shared.loadItems()
+//            isDisconnect = false
+//        }
+//    }
     func applicationDidEnterBackground(_ application: UIApplication) {
-
+//        isDisconnect = true
 //        self.locationManager.stopUpdatingLocation()
 //        self.locationManager.startMonitoringSignificantLocationChanges()
 
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        
-//        ItemsViewController.shared.loadItems()
     }
     
 //    func applicationWillTerminate(_ application: UIApplication) {
@@ -121,15 +127,15 @@ extension AppDelegate: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
     guard region is CLBeaconRegion else { return }
         
-    let content = UNMutableNotificationContent()
-    content.title = "Forget Me Not"
-    content.body = "Are you forgetting something?"
-    content.sound = .default()
-//    content.sound = UNNotificationSound(named: UNNotificationSoundName(string: "AlarmSound.wav") as String)
-
-
-    let request = UNNotificationRequest(identifier: "ForgetMeNot", content: content, trigger: nil)
-    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//    let content = UNMutableNotificationContent()
+//    content.title = "Forget Me Not"
+//    content.body = "Are you forgetting something?"
+//    content.sound = .default()
+////    content.sound = UNNotificationSound(named: UNNotificationSoundName(string: "AlarmSound.wav") as String)
+//
+//
+//    let request = UNNotificationRequest(identifier: "ForgetMeNot", content: content, trigger: nil)
+//    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
   }
 }
 

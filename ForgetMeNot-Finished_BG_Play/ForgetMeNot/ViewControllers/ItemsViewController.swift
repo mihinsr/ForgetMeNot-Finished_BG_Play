@@ -249,6 +249,7 @@ extension ItemsViewController: CLLocationManagerDelegate {
                         if(items[row].name == "B2")
                         {
                             if(beacon.rssi != 0){
+                                isDisconnect = false
                                 disconnectB1DateTime = nil
                             }
                         }
@@ -256,7 +257,7 @@ extension ItemsViewController: CLLocationManagerDelegate {
                 }
             }
         }
-        
+        print("disconnectB1DateTime : ",disconnectB1DateTime)
         if(disconnectB1DateTime != nil){
             let calendar = Calendar.current
             let dateComponents = calendar.dateComponents([Calendar.Component.second], from: disconnectB1DateTime!, to: Date())
